@@ -330,6 +330,7 @@ function verify_topic_data(all_topics, stream, topic, last_msg_id, participated)
 }
 
 let rt = reset_module("recent_topics");
+rt.set_default_focus();
 
 run_test("test_recent_topics_show", () => {
     // Note: unread count and urls are fake,
@@ -401,6 +402,7 @@ run_test("test_filter_all", () => {
     const search_element = $.create("#recent_topics_search");
     search_element.val("topic-3");
     i = row_data.length;
+    rt.set_default_focus();
     assert.equal(rt.inplace_rerender("1:topic-1"), true);
 });
 
@@ -428,6 +430,7 @@ run_test("test_filter_unread", () => {
 
     rt = reset_module("recent_topics");
     rt.is_visible = () => true;
+    rt.set_default_focus();
 
     stub_templates(() => "<recent_topics table stub>");
     rt.process_messages(messages);
@@ -493,6 +496,7 @@ run_test("test_filter_participated", () => {
 
     rt = reset_module("recent_topics");
     rt.is_visible = () => true;
+    rt.set_default_focus();
     stub_templates(() => "<recent_topics table stub>");
     rt.process_messages(messages);
 
@@ -534,6 +538,7 @@ run_test("test_filter_participated", () => {
 run_test("test_update_unread_count", () => {
     rt = reset_module("recent_topics");
     rt.is_visible = () => true;
+    rt.set_default_focus();
     rt.set_filter("all");
     stub_templates(() => "<recent_topics table stub>");
     rt.process_messages(messages);
@@ -549,6 +554,7 @@ stub_templates(() => "<recent_topics table stub>");
 run_test("basic assertions", () => {
     rt = reset_module("recent_topics");
     rt.is_visible = () => true;
+    rt.set_default_focus();
     rt.set_filter("all");
     rt.process_messages(messages);
     let all_topics = rt.get();
